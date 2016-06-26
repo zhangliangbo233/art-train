@@ -27,7 +27,7 @@ public class ArtTrainUserDetailsService implements UserDetailsService,
 		Serializable {
 
 	/**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = -6434670800259687392L;
 
@@ -41,7 +41,6 @@ public class ArtTrainUserDetailsService implements UserDetailsService,
 	}
 
 	@Override
-	@Transactional(readOnly = true)
 	public UserDetails loadUserByUsername(String username)
 			throws UsernameNotFoundException {
 		UserDto user = null;
