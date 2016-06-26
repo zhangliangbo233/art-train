@@ -1,0 +1,24 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<artifactId>art-train</artifactId>
+		<groupId>com.suning.arttrain</groupId>
+		<version>1.0</version>
+	</parent>
+	<groupId>com.suning.arttrain.common</groupId>
+	<artifactId>art-train-common</artifactId>
+	<packaging>jar</packaging>
+	<name>art-train-common Maven Webapp</name>
+	<url>http://maven.apache.org</url>
+	<dependencies>
+		<dependency>
+			<groupId>net.sf.oval</groupId>
+			<artifactId>oval</artifactId>
+			<version>1.84</version>
+		</dependency>
+	</dependencies>
+	<build>
+		<finalName>art-train-common</finalName>
+	</build>
+</project>

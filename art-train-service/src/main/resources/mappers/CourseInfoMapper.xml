@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.suning.arttrain.repository.CourseInfoRepository">
+
+	<insert id="addCourseInfo" parameterType="CourseInfo">
+		insert into arttrain_course_info(course_name,begin_time,end_time,total_days,price,teacher_id,teacher_name)
+			values(#{courseName},#{beginTime},#{endTime},#{totalDays},#{price},#{teacherId},#{teacherName})
+	</insert>
+	
+	<sql id="selectCourseInfo">
+		select id,course_name,price,begin_time,end_time,total_days,teacher_id,teacher_name from arttrain_course_info
+	</sql>
+	
+	<select id="loadCourseInfo" resultType="CourseInfo" parameterType="long">
+		<include refid="selectCourseInfo"/>
+			 where id=#{id};
+	</select>
+	
+	<update id="updateCourseInfo">
+		update arttrain_course_info set course_name=#{courseName},begin_time=#{beginTime},end_time=#{endTime},total_days=#{totalDays},
+		price=#{price},teacher_id=#{teacherId},teacher_name=#{teacherName} where id=#{id};
+	</update>
+	
+	<sql id="searchContidion">
+		where 1=1
+        <choose>
+            <when test="startCourseTime != null">
+                and begin_time >= str_to_date(#{startCourseTime}, '%Y-%m-%d')
+            </when>
+            <when test="endCourseTime != null">
+                <![CDATA[and begin_time <= str_to_date(#{endCourseTime}, '%Y-%m-%d')]]>
+            </when>
+            <when test="courseName != null">
+                and course_name like concat('%',#{courseName},'%')
+            </when>
+            <when test="teacherName != null">
+                and teacher_name like concat('%',#{teacherName},'%')
+            </when>
+        </choose>
+	</sql>
+	
+	<select id="countCourseInfos" resultType="int">
+		select count(*) from  arttrain_course_info
+		<include refid="searchContidion"/>
+	</select>
+	
+	<select id="listCourseInfos" resultType="CourseInfo" parameterType="java.util.Map">
+		<include refid="selectCourseInfo"/>
+		<include refid="searchContidion"/>
+			order by id desc limit #{pageIndex},#{pageSize};
+	</select>
+	
+	<delete id="deleteCourseInfoById" parameterType="long">
+		delete from arttrain_course_info where id=#{id};
+	</delete>
+
+    <select id="queryCourseInfos" resultType="CourseInfo">
+        <include refid="selectCourseInfo"/>
+        order by id desc;
+    </select>
+</mapper>

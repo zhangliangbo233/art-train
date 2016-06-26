@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.suning.arttrain.repository.TeacherInfoRepository">
+
+	<insert id="addTeacherInfo" parameterType="TeacherInfo">
+		insert into arttrain_teacher_info(name,age,contact_mobile,assume_time,salary)
+			values(#{name},#{age},#{contactMobile},#{assumeTime},#{salary})
+	</insert>
+	
+	<sql id="selectTeacherInfo">
+		select id,name,age,contact_mobile,assume_time,salary from arttrain_teacher_info
+	</sql>
+	
+	<select id="loadTeacherInfo" resultType="TeacherInfo" parameterType="long">
+		<include refid="selectTeacherInfo"/>
+			 where id=#{id};
+	</select>
+	
+	<update id="updateTeacherInfo">
+		update arttrain_teacher_info set name=#{name},age=#{age},contact_mobile=#{contactMobile},assume_time=#{assumeTime},
+			salary=#{salary} where id=#{id};
+	</update>
+	
+	<sql id="searchContidion">
+		where 1=1
+        <choose>
+            <when test="startTime != null and startTime!='' ">
+                and begin_time >= str_to_date(#{startTime}, '%Y-%m-%d')
+            </when>
+            <when test="endTime != null and endTime!='' ">
+                <![CDATA[and begin_time <= str_to_date(#{endTime}, '%Y-%m-%d')]]>
+            </when>
+            <when test="teacherName != null and teacherName!='' ">
+                and name like concat('%',#{teacherName},'%')
+            </when>
+        </choose>
+	</sql>
+	
+	<select id="countTeacherInfos" resultType="int">
+		select count(*) from  arttrain_teacher_info
+		<include refid="searchContidion"/>
+	</select>
+	
+	<select id="listTeacherInfos" resultType="TeacherInfo" parameterType="java.util.Map">
+		<include refid="selectTeacherInfo"/>
+		<include refid="searchContidion"/>
+			order by id desc limit #{pageIndex},#{pageSize};
+	</select>
+	
+	<delete id="deleteTeacherInfoById" parameterType="long">
+		delete from arttrain_teacher_info where id=#{id};
+	</delete>
+
+    <select id="queryTeacherInfos" resultType="TeacherInfo">
+        <include refid="selectTeacherInfo"/>
+        order by id desc;
+    </select>
+
+
+</mapper>

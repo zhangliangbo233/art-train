@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.suning.arttrain.repository.MenuInfoRepository">
+    
+    <resultMap id="MenuInfoResult" type="com.suning.arttrain.persistent.MenuInfo">
+
+        <result property="id" column="id"/>
+        <result property="text" column="text"/>
+        <result property="url" column="url"/>
+        <result property="state" column="state"/>
+        <result property="iconCls" column="icon_cls"/>
+        <collection property="children" column="id" select="selectChildrenById"/>
+
+    </resultMap>
+
+    <resultMap id="MenuInfoChildResult" type="com.suning.arttrain.dto.MenuInfoChild">
+
+        <result property="id" column="id"/>
+        <result property="text" column="text"/>
+        <result property="state" column="state"/>
+        <result property="iconCls" column="icon_cls"/>
+        <collection property="attributes" column="id" select="selectArrributeById"/>
+
+    </resultMap>
+
+
+    <sql id="selectMenuInfo">
+		select id,text,state,icon_cls,parent_id from arttrain_menu_info
+	</sql>
+
+    <sql id="selectChildren">
+        select id,text,state,url from arttrain_menu_info
+    </sql>
+
+
+    <sql id="selectAttribute">
+        select url from arttrain_menu_info
+    </sql>
+	
+    <sql id="searchContidion">
+        where is_delete=1
+    </sql>
+
+    <select id="selectChildrenById" resultMap="MenuInfoChildResult" parameterType="long">
+
+        <include refid="selectChildren"/>
+        <include refid="searchContidion"/>
+        and parent_id = #{id}
+        order by id desc ;
+
+    </select>
+
+    <select id="selectArrributeById" resultType="com.suning.arttrain.dto.MenuInfoAttribute" parameterType="long">
+
+      <include refid="selectAttribute"/>
+      <include refid="searchContidion"/>
+        and id = #{id}
+        order by id desc ;
+
+    </select>
+
+	<select id="listMenuInfos" resultMap="MenuInfoResult">
+		<include refid="selectMenuInfo"/>
+		<include refid="searchContidion"/>
+
+          and parent_id = #{id}
+			order by id asc;
+	</select>
+	
+</mapper>

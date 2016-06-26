@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.suning.arttrain.repository.StudentInfoRepository">
+
+	<insert id="addStudentInfo" parameterType="StudentInfo" keyProperty="id" useGeneratedKeys="true">
+		insert into arttrain_student_info(name,age,birthday,address,contact_person,contact_mobile,school,grade)
+			values(#{name},#{age},str_to_date(#{birthday}, '%Y-%m-%d'),#{address},#{contactPerson},#{contactMobile},#{school},#{grade})
+        <selectKey resultType="long" order="AFTER" keyProperty="id">
+            SELECT LAST_INSERT_ID();
+        </selectKey>
+	</insert>
+
+	<select id="loadStudentInfo" resultType="StudentInfo" parameterType="long">
+		select id,name,age,birthday,address,contact_person,contact_mobile,school,grade from arttrain_student_info where id=#{id};
+	</select>
+
+	<update id="updateStudentInfo">
+		update arttrain_student_info set name=#{name},age=#{age},birthday=str_to_date(#{birthday}, '%Y-%m-%d'),address=#{address},
+		contact_person=#{contactPerson},contact_mobile=#{contactMobile},school=#{school},grade=#{grade}  where id=#{id};
+	</update>
+
+</mapper>
