@@ -7,7 +7,7 @@
 	<packaging>pom</packaging>
 	<version>1.0</version>
 	<modules>
-		<module>art-train-api</module>
+		<module>art-train-facade</module>
 		<module>art-train-service</module>
 		<module>art-train-common</module>
 		<module>art-train-web</module>

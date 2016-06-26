@@ -7,9 +7,9 @@
 		<version>1.0</version>
 	</parent>
 	<groupId>com.suning.arttrain.api</groupId>
-	<artifactId>art-train-api</artifactId>
+	<artifactId>art-train-facade</artifactId>
 	<packaging>jar</packaging>
-	<name>art-train-api</name>
+	<name>art-train-facade</name>
 	<url>http://maven.apache.org</url>
 
 	<dependencies>
