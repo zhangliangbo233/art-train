@@ -12,11 +12,6 @@
 	<name>art-train-web</name>
 	<url>http://maven.apache.org</url>
 	<dependencies>
-		<!--<dependency>-->
-			<!--<groupId>com.suning.arttrain.api</groupId>-->
-			<!--<artifactId>art-train-api</artifactId>-->
-			<!--<version>1.0</version>-->
-		<!--</dependency>-->
 		<dependency>
 			<groupId>com.suning.arttrain.service</groupId>
 			<artifactId>art-train-service</artifactId>

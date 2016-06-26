@@ -9,8 +9,7 @@
 	<groupId>com.suning.arttrain.common</groupId>
 	<artifactId>art-train-common</artifactId>
 	<packaging>jar</packaging>
-	<name>art-train-common Maven Webapp</name>
-	<url>http://maven.apache.org</url>
+	<name>art-train-common</name>
 	<dependencies>
 		<dependency>
 			<groupId>net.sf.oval</groupId>
