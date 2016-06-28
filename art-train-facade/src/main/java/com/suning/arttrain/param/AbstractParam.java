@@ -1,20 +1,28 @@
 package com.suning.arttrain.param;
 
 
-import com.suning.arttrain.common.util.Page;
-
 public abstract class AbstractParam{
 
     /**
      * 分页查询对象
      */
-    private Page pg;
+    private int pageSize;
 
-    public Page getPg() {
-        return pg;
+    private int pageIndex;
+
+    public int getPageSize() {
+        return pageSize;
     }
 
-    public void setPg(Page pg) {
-        this.pg = pg;
+    public void setPageSize(int pageSize) {
+        this.pageSize = pageSize;
+    }
+
+    public int getPageIndex() {
+        return pageIndex;
+    }
+
+    public void setPageIndex(int pageIndex) {
+        this.pageIndex = pageIndex;
     }
 }

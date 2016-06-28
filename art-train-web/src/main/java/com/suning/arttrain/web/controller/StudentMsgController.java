@@ -1,11 +1,11 @@
 package com.suning.arttrain.web.controller;
 
 import com.alibaba.fastjson.JSONObject;
-import com.suning.arttrain.common.exception.ParamsValidatorException;
 import com.suning.arttrain.common.util.AjaxResult;
 import com.suning.arttrain.common.util.Page;
 import com.suning.arttrain.common.util.PageData;
 import com.suning.arttrain.dto.StudentSignView;
+import com.suning.arttrain.exception.ParamValidateException;
 import com.suning.arttrain.param.StudentSignCreateParam;
 import com.suning.arttrain.param.StudentSignListParam;
 import com.suning.arttrain.service.StudentMsgService;
@@ -46,8 +46,8 @@ public class StudentMsgController extends BaseController{
 
 			Page pg = new Page(rows, page);
 			data = new PageData<StudentSignView>();
-
-            listParam.setPg(pg);
+			listParam.setPageIndex(page);
+			listParam.setPageSize(rows);
             listParam.setStartTime(startTime);
             listParam.setEndTime(endTime);
             listParam.setStudentName(studentName);
@@ -70,7 +70,7 @@ public class StudentMsgController extends BaseController{
 			StudentSignCreateParam signParam = JSONObject.parseObject(paramJson, StudentSignCreateParam.class);
 			studentMsgService.saveStudentSign(signParam);
 			return AjaxResult.success(null,"恭喜，操作成功");
-		}catch(ParamsValidatorException e){
+		}catch(ParamValidateException e){
 			logger.error(e.getMessage(),e);
 			return AjaxResult.failed(e.getMessage());
 		}catch(Exception e){
@@ -98,7 +98,7 @@ public class StudentMsgController extends BaseController{
 		try {
 			StudentSignView view =studentMsgService.loadSignWithStuInfoById(id);
 			return AjaxResult.success(view);
-		} catch (ParamsValidatorException e) {
+		} catch (ParamValidateException e) {
 			logger.error(e.getMessage(),e);
 			return AjaxResult.failed(e.getMessage());
 		} catch (Throwable e) {

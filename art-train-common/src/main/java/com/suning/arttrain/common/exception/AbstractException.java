@@ -1,6 +1,6 @@
 package com.suning.arttrain.common.exception;
 
-public class AbstractException extends Exception {
+public class AbstractException extends RuntimeException {
 
 	/**
 	 * 

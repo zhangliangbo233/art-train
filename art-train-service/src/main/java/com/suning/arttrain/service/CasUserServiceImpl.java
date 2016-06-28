@@ -2,6 +2,7 @@ package com.suning.arttrain.service;
 
 import java.util.Date;
 
+import com.suning.arttrain.exception.ParamValidateException;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
@@ -23,15 +24,14 @@ public class CasUserServiceImpl implements CasUserService {
 	private Md5PasswordEncoder md5Encoder;
 
 	@Override
-	public void saveCasUser(CasUserCreateParam param)
-			throws Exception {
+	public void saveCasUser(CasUserCreateParam param){
 		// 校验参数合法性
 		OvalUtil.validate(param);
 
 		int countRegisted = casUserRepository.countByUserName(param
 				.getUserName());
 		if (countRegisted > 0) {
-			throw new Exception("用户已经注册");
+			throw new ParamValidateException("用户已经注册");
 		}
 
 		CasUser casUser = new CasUser();

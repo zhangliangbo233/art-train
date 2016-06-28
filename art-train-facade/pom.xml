@@ -14,11 +14,6 @@
 
 	<dependencies>
 		<dependency>
-			<groupId>com.suning.arttrain.common</groupId>
-			<artifactId>art-train-common</artifactId>
-			<version>1.0</version>
-		</dependency>
-		<dependency>
 			<groupId>org.springframework.data</groupId>
 			<artifactId>spring-data-jpa</artifactId>
 			<version>1.4.1.RELEASE</version>

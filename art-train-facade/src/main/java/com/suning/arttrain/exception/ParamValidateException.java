@@ -5,7 +5,7 @@ package com.suning.arttrain.exception;
  * @author zhanglb
  *
  */
-public class ParamValidateException extends Exception {
+public class ParamValidateException extends RuntimeException {
 
 	/**
 	 * 

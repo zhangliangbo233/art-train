@@ -13,8 +13,13 @@
 	<url>http://maven.apache.org</url>
 	<dependencies>
 		<dependency>
-			<groupId>com.suning.arttrain.api</groupId>
-			<artifactId>art-train-api</artifactId>
+			<groupId>com.suning.arttrain.common</groupId>
+			<artifactId>art-train-common</artifactId>
+			<version>1.0</version>
+		</dependency>
+		<dependency>
+			<groupId>com.suning.arttrain.facade</groupId>
+			<artifactId>art-train-facade</artifactId>
 			<version>1.0</version>
 		</dependency>
 		<dependency>
