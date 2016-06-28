@@ -1,7 +1,7 @@
 package com.suning.arttrain.service;
 
-import com.suning.arttrain.common.exception.ParamsValidatorException;
 import com.suning.arttrain.common.util.OvalUtil;
+import com.suning.arttrain.exception.ParamValidateException;
 import com.suning.arttrain.param.CourseCreateParam;
 import com.suning.arttrain.param.CourseListParam;
 import com.suning.arttrain.persistent.CourseInfo;
@@ -38,8 +38,8 @@ public class CourseMsgServiceImpl implements CourseMsgService {
 	@Override
 	public List<CourseInfo> listCourseInfos(CourseListParam listParam) {
 		Map<String,Object> param = getParam(listParam);
-		param.put("pageSize", listParam.getPg().getPageSize());
-		param.put("pageIndex", listParam.getPg().getPageIndex());
+		param.put("pageSize", listParam.getPageSize());
+		param.put("pageIndex", listParam.getPageIndex());
 		
 		return courseInfoRepository.listCourseInfos(param);
 	}
@@ -71,7 +71,7 @@ public class CourseMsgServiceImpl implements CourseMsgService {
 	
 	@Override
 	@Transactional(rollbackFor=Throwable.class)
-	public void saveCourseInfo(CourseCreateParam courseParam) throws ParamsValidatorException {
+	public void saveCourseInfo(CourseCreateParam courseParam) throws ParamValidateException {
 		
 		OvalUtil.validate(courseParam);
 		
@@ -115,19 +115,19 @@ public class CourseMsgServiceImpl implements CourseMsgService {
 	
 	@Override
 	@Transactional(rollbackFor=Throwable.class)
-	public void deleteCourseInfo(Long id) throws ParamsValidatorException {
+	public void deleteCourseInfo(Long id)  {
 		CourseInfo course = courseInfoRepository.loadCourseInfo(id);
 		if(null == course){
-			throw new ParamsValidatorException("信息不存在，请稍后重试！");
+			throw new ParamValidateException("信息不存在，请稍后重试！");
 		}
         courseInfoRepository.deleteCourseInfoById(id);
 	}
 	
 	@Override
-	public CourseInfo loadCourseInfoById(Long id) throws ParamsValidatorException {
+	public CourseInfo loadCourseInfoById(Long id) {
 		CourseInfo view = courseInfoRepository.loadCourseInfo(id);
 		if(null == view){
-			throw new ParamsValidatorException("信息不存在，请稍后重试！");
+			throw new ParamValidateException("信息不存在，请稍后重试！");
 		}
 		return view;
 	}

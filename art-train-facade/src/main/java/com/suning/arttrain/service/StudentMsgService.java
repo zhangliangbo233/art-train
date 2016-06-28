@@ -23,11 +23,11 @@ public interface StudentMsgService {
 
 	public List<StudentSignView> listStudentSignInfos(StudentSignListParam listParam);
 
-	public void saveStudentSign(StudentSignCreateParam signParam) throws ParamValidateException;
+	public void saveStudentSign(StudentSignCreateParam signParam);
 
 	public void deleteStudentSign(Long id);
 
-	public StudentSignView loadSignWithStuInfoById(Long id) throws ParamValidateException;
+	public StudentSignView loadSignWithStuInfoById(Long id);
 
     /**
      * 查询即将过期的学员信息

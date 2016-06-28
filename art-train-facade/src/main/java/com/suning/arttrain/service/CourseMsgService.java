@@ -17,11 +17,11 @@ public interface CourseMsgService {
 
 	public List<CourseInfo> listCourseInfos(CourseListParam listParam);
 
-	public void saveCourseInfo(CourseCreateParam courseParam) throws ParamValidateException;
+	public void saveCourseInfo(CourseCreateParam courseParam);
 
-	public void deleteCourseInfo(Long id) throws ParamValidateException;
+	public void deleteCourseInfo(Long id);
 
-	public CourseInfo loadCourseInfoById(Long id) throws ParamValidateException;
+	public CourseInfo loadCourseInfoById(Long id);
 
     public List<CourseInfo> queryCourseInfos();
 

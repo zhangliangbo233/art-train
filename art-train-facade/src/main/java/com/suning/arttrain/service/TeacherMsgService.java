@@ -19,10 +19,10 @@ public interface TeacherMsgService {
 
     List<TeacherInfo> queryTeacherInfos();
 
-	void saveTeacherInfo(TeacherInfoCreateParam createParam) throws ParamValidateException;
+	void saveTeacherInfo(TeacherInfoCreateParam createParam);
 
-	void deleteTeacherInfo(Long id) throws ParamValidateException;
+	void deleteTeacherInfo(Long id);
 
-	TeacherInfo loadTeacherInfoById(Long id) throws ParamValidateException;
+	TeacherInfo loadTeacherInfoById(Long id);
 
 }

@@ -1,12 +1,11 @@
 package com.suning.arttrain.service;
 
-import java.util.List;
-
 import com.googlecode.jsonrpc4j.JsonRpcService;
-import com.suning.arttrain.common.exception.ParamsValidatorException;
 import com.suning.arttrain.dto.UserDto;
 import com.suning.arttrain.dto.UserRoleDto;
 import com.suning.arttrain.param.UserDetailParam;
+
+import java.util.List;
 
 @JsonRpcService(value = "/UserService.json")
 public interface UserService
@@ -15,7 +14,7 @@ public interface UserService
      * 保存用户信息
      * 
      * @param param
-     * @throws ParamsValidatorException
+     * @throws
      */
     //void saveUser(UserCreateParam param) throws ParamsValidatorException, UcException;
 

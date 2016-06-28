@@ -1,11 +1,13 @@
 package com.suning.arttrain.exception;
 
+import com.suning.arttrain.common.exception.AbstractException;
+
 /**
  * 参数校验错误异常类
  * @author zhanglb
  *
  */
-public class ParamValidateException extends RuntimeException {
+public class ParamValidateException extends AbstractException {
 
 	/**
 	 * 
