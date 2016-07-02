@@ -16,7 +16,6 @@
 	<properties>
 		<spring.framework.version>4.1.0.RELEASE</spring.framework.version>
 		<spring.security.version>4.0.0.RELEASE</spring.security.version>
-		<freemarker.version>2.3.22</freemarker.version>
 		<cas.client.core.version>3.2.1</cas.client.core.version>
 		<fastjson.version>1.1.35</fastjson.version>
 		<logback.version>1.0.13</logback.version>

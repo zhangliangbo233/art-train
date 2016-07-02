@@ -19,17 +19,9 @@
     <import resource="classpath*:spring-common.xml"/>
     <import resource="spring-service.xml"/>
 
-    <!--<mvc:freemarker-configurer>
-        <mvc:template-loader-path location="/view"/>
-    </mvc:freemarker-configurer>
-    <mvc:view-resolvers>
-        <mvc:freemarker cache-views="false" suffix=".ftl"/>
-    </mvc:view-resolvers>-->
-
-
     <!-- 配置Velocity引擎 -->
     <bean id="velocityConfigurer" class="org.springframework.web.servlet.view.velocity.VelocityConfigurer">
-        <property name="resourceLoaderPath" value="/freemarker/"/>
+        <property name="resourceLoaderPath" value="/velocity/"/>
         <property name="velocityProperties">
             <props>
                 <prop key="input.encoding">UTF-8</prop>
