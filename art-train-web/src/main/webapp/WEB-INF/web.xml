@@ -60,16 +60,6 @@
 		<url-pattern>*.htm</url-pattern>
 	</filter-mapping>
 
-	<!-- sitemesh配置-->
-	<filter>
-		<filter-name>sitemesh</filter-name>
-		<filter-class>org.sitemesh.config.ConfigurableSiteMeshFilter</filter-class>
-	</filter>
-	<filter-mapping>
-		<filter-name>sitemesh</filter-name>
-		<url-pattern>*.htm</url-pattern>
-	</filter-mapping>
-
 	<!-- spring security 配置 -->
 	<!-- <filter>
 		<filter-name>springSecurityFilterChain</filter-name>
@@ -91,7 +81,7 @@
 	 </error-page>
    
 	<welcome-file-list>
-		<welcome-file>/index.htm</welcome-file>
+		<welcome-file>index.html</welcome-file>
 	</welcome-file-list>
 
 </web-app>

@@ -3,13 +3,13 @@ package com.suning.arttrain.service;
 import java.util.Date;
 
 import com.suning.arttrain.exception.ParamValidateException;
+import com.suning.arttrain.util.OvalUtil;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.suning.arttrain.common.util.DateUtil;
-import com.suning.arttrain.common.util.OvalUtil;
 import com.suning.arttrain.param.CasUserCreateParam;
 import com.suning.arttrain.persistent.CasUser;
 import com.suning.arttrain.repository.CasUserRepository;

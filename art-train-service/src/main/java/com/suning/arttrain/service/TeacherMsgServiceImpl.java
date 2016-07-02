@@ -1,11 +1,11 @@
 package com.suning.arttrain.service;
 
-import com.suning.arttrain.common.exception.ParamsValidatorException;
-import com.suning.arttrain.common.util.OvalUtil;
+import com.suning.arttrain.exception.ParamValidateException;
 import com.suning.arttrain.param.TeacherInfoCreateParam;
 import com.suning.arttrain.param.TeacherInfoListParam;
 import com.suning.arttrain.persistent.TeacherInfo;
 import com.suning.arttrain.repository.TeacherInfoRepository;
+import com.suning.arttrain.util.OvalUtil;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
@@ -37,8 +37,8 @@ public class TeacherMsgServiceImpl implements TeacherMsgService {
     @Override
     public List<TeacherInfo> listTeacherInfos(TeacherInfoListParam listParam) {
         Map<String, Object> param = getParam(listParam);
-        param.put("pageSize", listParam.getPg().getPageSize());
-        param.put("pageIndex", listParam.getPg().getPageIndex());
+        param.put("pageSize", listParam.getPageSize());
+        param.put("pageIndex", listParam.getPageIndex());
 
         return teacherInfoRepository.listTeacherInfos(param);
     }
@@ -73,7 +73,7 @@ public class TeacherMsgServiceImpl implements TeacherMsgService {
 
     @Override
     @Transactional(rollbackFor = Throwable.class)
-    public void saveTeacherInfo(TeacherInfoCreateParam createParam) throws ParamsValidatorException {
+    public void saveTeacherInfo(TeacherInfoCreateParam createParam) throws ParamValidateException {
 
         OvalUtil.validate(createParam);
 
@@ -106,19 +106,19 @@ public class TeacherMsgServiceImpl implements TeacherMsgService {
 
     @Override
     @Transactional(rollbackFor = Throwable.class)
-    public void deleteTeacherInfo(Long id) throws ParamsValidatorException {
+    public void deleteTeacherInfo(Long id) throws ParamValidateException {
         TeacherInfo teacherInfo = teacherInfoRepository.loadTeacherInfo(id);
         if (null == teacherInfo) {
-            throw new ParamsValidatorException("信息不存在，请稍后重试！");
+            throw new ParamValidateException("信息不存在，请稍后重试！");
         }
         teacherInfoRepository.deleteTeacherInfoById(id);
     }
 
     @Override
-    public TeacherInfo loadTeacherInfoById(Long id) throws ParamsValidatorException {
+    public TeacherInfo loadTeacherInfoById(Long id) throws ParamValidateException {
         TeacherInfo teacherInfo = teacherInfoRepository.loadTeacherInfo(id);
         if (null == teacherInfo) {
-            throw new ParamsValidatorException("信息不存在，请稍后重试！");
+            throw new ParamValidateException("信息不存在，请稍后重试！");
         }
         return teacherInfo;
     }

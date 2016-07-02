@@ -1,21 +1,20 @@
 package com.suning.arttrain.service;
 
-import com.suning.arttrain.common.exception.ParamsValidatorException;
 import com.suning.arttrain.common.util.DateUtil;
-import com.suning.arttrain.common.util.OvalUtil;
 import com.suning.arttrain.constant.StudentStatusEnum;
 import com.suning.arttrain.dto.StudentSignView;
+import com.suning.arttrain.exception.ParamValidateException;
 import com.suning.arttrain.param.StudentSignCreateParam;
 import com.suning.arttrain.param.StudentSignListParam;
 import com.suning.arttrain.persistent.StudentInfo;
 import com.suning.arttrain.persistent.StudentSign;
 import com.suning.arttrain.repository.StudentInfoRepository;
 import com.suning.arttrain.repository.StudentSignMsgRepository;
+import com.suning.arttrain.util.OvalUtil;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.util.HashMap;
@@ -58,8 +57,8 @@ public class StudentMsgServiceImpl implements StudentMsgService {
 	public List<StudentSignView> listStudentSignInfos(StudentSignListParam listParam) {
 		Map<String,Object> param = new HashMap<String, Object>();
 		param.put("isDelete", StudentStatusEnum.NORMAL.getCode());
-		param.put("pageSize", listParam.getPg().getPageSize());
-		param.put("pageIndex", listParam.getPg().getPageIndex());
+		param.put("pageSize", listParam.getPageSize());
+		param.put("pageIndex", listParam.getPageIndex());
 		if(StringUtils.isNotBlank(listParam.getStartTime())){
 			param.put("startTime", listParam.getStartTime());
 		}
@@ -73,7 +72,7 @@ public class StudentMsgServiceImpl implements StudentMsgService {
 	}
 	
 	@Override
-	public void saveStudentSign(StudentSignCreateParam signParam) throws ParamsValidatorException {
+	public void saveStudentSign(StudentSignCreateParam signParam) {
 		
 		OvalUtil.validate(signParam);
 		
@@ -130,13 +129,13 @@ public class StudentMsgServiceImpl implements StudentMsgService {
 	}
 	
 	@Override
-	public StudentSignView loadSignWithStuInfoById(Long id) throws ParamsValidatorException {
+	public StudentSignView loadSignWithStuInfoById(Long id) throws ParamValidateException {
 		Map<String,Object> param = new HashMap<String, Object>();
 		param.put("isDelete", StudentStatusEnum.NORMAL.getCode());
 		param.put("id", id);
 		StudentSignView view = studentSignMsgRepository.loadSignWithStuInfoById(param);
 		if(null == view){
-			throw new ParamsValidatorException("信息不存在，请稍后重试！");
+			throw new ParamValidateException("信息不存在，请稍后重试！");
 		}
 		return view;
 	}

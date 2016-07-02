@@ -1,5 +1,6 @@
 package com.suning.arttrain.param;
 
+
 import net.sf.oval.constraint.Length;
 import net.sf.oval.constraint.MatchPattern;
 import net.sf.oval.constraint.NotNull;

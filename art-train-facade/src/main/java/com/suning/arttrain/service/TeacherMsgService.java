@@ -1,7 +1,6 @@
 package com.suning.arttrain.service;
 
 import com.googlecode.jsonrpc4j.JsonRpcService;
-import com.suning.arttrain.exception.ParamValidateException;
 import com.suning.arttrain.param.TeacherInfoCreateParam;
 import com.suning.arttrain.param.TeacherInfoListParam;
 import com.suning.arttrain.persistent.TeacherInfo;

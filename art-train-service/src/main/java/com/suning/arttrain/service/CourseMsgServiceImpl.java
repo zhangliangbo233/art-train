@@ -1,11 +1,11 @@
 package com.suning.arttrain.service;
 
-import com.suning.arttrain.common.util.OvalUtil;
 import com.suning.arttrain.exception.ParamValidateException;
 import com.suning.arttrain.param.CourseCreateParam;
 import com.suning.arttrain.param.CourseListParam;
 import com.suning.arttrain.persistent.CourseInfo;
 import com.suning.arttrain.repository.CourseInfoRepository;
+import com.suning.arttrain.util.OvalUtil;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;

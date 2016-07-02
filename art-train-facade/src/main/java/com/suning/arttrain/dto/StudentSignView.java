@@ -1,10 +1,9 @@
 package com.suning.arttrain.dto;
 
+import org.codehaus.jackson.map.annotate.JsonSerialize;
+
 import java.text.ParseException;
 import java.util.Date;
-
-import com.suning.arttrain.common.util.DateUtil;
-import org.codehaus.jackson.map.annotate.JsonSerialize;
 
 
 /**
@@ -85,7 +84,7 @@ public class StudentSignView {
 	}
 
 	public String getSignTime() throws ParseException{
-		return DateUtil.formatDate(signTime, DateUtil.FORMAT_STR_YYYY_MM_DD_HHMMSS);
+		return signTime;
 	}
 
 	public void setSignTime(String signTime) {
@@ -165,7 +164,7 @@ public class StudentSignView {
 	}
 
 	public String getBirthday() throws ParseException {
-		return DateUtil.formatDate(birthday, DateUtil.FORMAT_STR);
+		return birthday;
 	}
 
 	public void setBirthday(String birthday) {

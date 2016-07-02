@@ -1,10 +1,9 @@
 package com.suning.arttrain.web.controller;
 
 import com.alibaba.fastjson.JSONObject;
-import com.suning.arttrain.common.exception.ParamsValidatorException;
 import com.suning.arttrain.common.util.AjaxResult;
-import com.suning.arttrain.common.util.Page;
 import com.suning.arttrain.common.util.PageData;
+import com.suning.arttrain.exception.ParamValidateException;
 import com.suning.arttrain.param.TeacherInfoCreateParam;
 import com.suning.arttrain.param.TeacherInfoListParam;
 import com.suning.arttrain.persistent.TeacherInfo;
@@ -45,8 +44,8 @@ public class TeacherMsgController extends BaseController{
 		PageData<TeacherInfo> data = null;
 		try{
 			TeacherInfoListParam listParam = JSONObject.parseObject(teacherInfoListParam, TeacherInfoListParam.class);
-			Page pg = new Page(rows, page);
-            listParam.setPg(pg);
+            listParam.setPageIndex(rows);
+            listParam.setPageSize(page);
 			List<TeacherInfo> teacherInfos = teacherMsgService.listTeacherInfos(listParam);
 			int countTeacherInfo = teacherMsgService.countTeacherInfos(listParam);
 			data = new PageData<TeacherInfo>();
@@ -83,13 +82,10 @@ public class TeacherMsgController extends BaseController{
 			TeacherInfoCreateParam teacherInfoParam = JSONObject.parseObject(paramJson, TeacherInfoCreateParam.class);
 			teacherMsgService.saveTeacherInfo(teacherInfoParam);
 			return AjaxResult.success(null,"恭喜，操作成功");
-		}catch(ParamsValidatorException e){
+		}catch(ParamValidateException e){
 			logger.error(e.getMessage(),e);
 			return AjaxResult.failed(e.getMessage());
 		}catch(Exception e){
-			logger.error(e.getMessage(),e);
-			return AjaxResult.failed("操作失败，请稍后重试");
-		} catch (Throwable e) {
 			logger.error(e.getMessage(),e);
 			return AjaxResult.failed("操作失败，请稍后重试");
 		}
@@ -100,12 +96,9 @@ public class TeacherMsgController extends BaseController{
 		try {
 			TeacherInfo teacherInfo = teacherMsgService.loadTeacherInfoById(id);
 			return AjaxResult.success(teacherInfo);
-		} catch (ParamsValidatorException e) {
+		} catch (ParamValidateException e) {
 			logger.error(e.getMessage(),e);
 			return AjaxResult.failed(e.getMessage());
-		} catch (Throwable e) {
-			logger.error(e.getMessage(),e);
-			return AjaxResult.failed("操作失败，请稍后重试");
 		}
 	}
 	
@@ -114,11 +107,9 @@ public class TeacherMsgController extends BaseController{
 		try {
 			teacherMsgService.deleteTeacherInfo(id);
 			return AjaxResult.success(null,"恭喜，操作成功");
-		} catch (ParamsValidatorException e) {
+		} catch (ParamValidateException e) {
 			logger.error(e.getMessage(),e);
 			return AjaxResult.failed(e.getMessage());
-		} catch (Throwable e) {
-			logger.error(e.getMessage(),e);
-			return AjaxResult.failed("操作失败，请稍后重试");		}
+		}
 	}
 }
