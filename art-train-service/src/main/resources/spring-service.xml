@@ -91,9 +91,6 @@
         <aop:advisor advice-ref="txAdvice" pointcut-ref="transactionManagerMethod" order="2"/>
     </aop:config>
 	
-	
-	<context:component-scan base-package="com.suning.arttrain"/>
-
 	<bean id="md5Encoder"
 		class="org.springframework.security.authentication.encoding.Md5PasswordEncoder">
 	</bean>
