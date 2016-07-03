@@ -333,7 +333,7 @@ var FormComponents = function () {
 
         function format(state) {
             if (!state.id) return state.text; // optgroup
-            return "<img class='flag' src='assets/img/flags/" + state.id.toLowerCase() + ".png'/>&nbsp;&nbsp;" + state.text;
+            return "<img class='flag' src='static/images/flags/" + state.id.toLowerCase() + ".png'/>&nbsp;&nbsp;" + state.text;
         }
         $("#select2_sample4").select2({
             allowClear: true,
