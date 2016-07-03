@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:batch="http://www.springframework.org/schema/batch"
+
+	xsi:schemaLocation="
+	    http://www.springframework.org/schema/batch
+        http://www.springframework.org/schema/batch/spring-batch-3.0.xsd
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.1.xsd">
+
+    <bean id="resourcelessTransactionManager" class="org.springframework.batch.support.transaction.ResourcelessTransactionManager">
+    </bean>
+
+    <bean id="jobRepository" class="org.springframework.batch.core.repository.support.JobRepositoryFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+        <property name="databaseType" value="mysql"/>
+        <property name="transactionManager" ref="resourcelessTransactionManager"/>
+    </bean>
+
+    <bean id="jobLauncher" class="org.springframework.batch.core.launch.support.SimpleJobLauncher">
+        <property name="jobRepository" ref="jobRepository"/>
+
+    </bean>
+
+    <batch:job id="reportJob">
+        <batch:step id="step1">
+            <batch:tasklet>
+                <batch:chunk reader="reportItemReader" writer="reportItemWriter" commit-interval="2">
+                </batch:chunk>
+            </batch:tasklet>
+        </batch:step>
+    </batch:job>
+
+    <bean id="reportItemReader" class="org.springframework.batch.item.database.JdbcCursorItemReader">
+        <property name="dataSource" ref="dataSource"/>
+        <property name="rowMapper">
+            <bean class="com.suning.arttrain.util.StudentSignRowMapper"/>
+        </property>
+        <property name="sql" value="select a.*,b.school,b.contact_person,b.contact_mobile,b.age,b.birthday,b.address,b.grade
+            from arttrain_student_sign a,arttrain_student_info b
+			    where a.student_id=b.id and a.is_delete=1"/>
+    </bean>
+
+    <bean id="reportItemWriter" class="org.springframework.batch.item.file.FlatFileItemWriter">
+        <property name="resource" value="${batch.write.report.path}"/>
+        <property name="lineAggregator">
+            <bean class="org.springframework.batch.item.file.transform.DelimitedLineAggregator">
+                <property name="delimiter" value=","/>
+                <property name="fieldExtractor">
+                    <bean class="org.springframework.batch.item.file.transform.BeanWrapperFieldExtractor">
+                        <property name="names" value="age,address,birthday"/>
+                    </bean>
+                </property>
+            </bean>
+        </property>
+    </bean>
+
+   <!-- <jdbc:initialize-database data-source="dataSource">
+        <jdbc:script location="org/springframework/batch/core/schema-drop-mysql.sql" />
+        <jdbc:script location="org/springframework/batch/core/schema-mysql.sql" />
+    </jdbc:initialize-database>-->
+
+    <import resource="spring-service.xml"/>
+</beans>

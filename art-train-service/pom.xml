@@ -1,0 +1,54 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<artifactId>art-train</artifactId>
+		<groupId>com.suning.arttrain</groupId>
+		<version>1.0</version>
+	</parent>
+	<groupId>com.suning.arttrain.service</groupId>
+	<artifactId>art-train-service</artifactId>
+	<packaging>jar</packaging>
+	<name>art-train-service Maven Webapp</name>
+	<url>http://maven.apache.org</url>
+	<dependencies>
+		<dependency>
+			<groupId>com.suning.arttrain.common</groupId>
+			<artifactId>art-train-common</artifactId>
+			<version>1.0</version>
+		</dependency>
+		<dependency>
+			<groupId>com.suning.arttrain.facade</groupId>
+			<artifactId>art-train-facade</artifactId>
+			<version>1.0</version>
+		</dependency>
+
+
+    </dependencies>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.mortbay.jetty</groupId>
+				<artifactId>maven-jetty-plugin</artifactId>
+				<version>6.1.26</version>
+				<configuration>
+					<webAppSourceDirectory>src/main/webapp</webAppSourceDirectory>
+					<scanIntervalSeconds>60</scanIntervalSeconds>
+                    <!--<reload>automatic</reload>-->
+					<contextPath>/arttrain</contextPath>
+					<!-- <webDefaultXml>jetty.xml</webDefaultXml> <jettyEnvXml>jetty-env.xml</jettyEnvXml> -->
+					<connectors>
+						<connector implementation="org.mortbay.jetty.nio.SelectChannelConnector">
+							<port>8090</port>
+							<headerBufferSize>80000</headerBufferSize>
+						</connector>
+					</connectors>
+					<stopKey>stop</stopKey>
+					<stopPort>8089</stopPort>
+				</configuration>
+			</plugin>
+
+		</plugins>
+		<finalName>art-train-service</finalName>
+	</build>
+</project>

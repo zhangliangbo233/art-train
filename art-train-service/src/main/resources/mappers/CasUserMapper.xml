@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.suning.arttrain.repository.CasUserRepository">
+
+    <insert id="save" parameterType="CasUser" useGeneratedKeys="true" keyProperty="id">
+		insert into arttrain_cas_user(user_name,password,create_time,enabled)
+			values(#{userName},#{password},#{createTime},#{enabled})
+    </insert>
+    
+    <select id="countByUserName" resultType="int" parameterType="string">
+    	select count(id) from arttrain_cas_user where user_name=#{userName}
+    </select>
+    
+    <sql id="findCasUser">
+    	select user_name,password,enabled,create_time from arttrain_cas_user
+    </sql>
+    
+    <select id="findCasUserByUsername" resultType="CasUser" parameterType="string">
+    	<include refid="findCasUser"/>
+    	where user_name=#{userName}
+    </select>
+    
+    <update id="updateCasUserPassword">
+    	update arttrain_cas_user set user_name=#{userName},password=#{encodePassword}
+    </update>
+    
+</mapper>
