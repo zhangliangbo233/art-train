@@ -10,9 +10,11 @@ import com.suning.arttrain.persistent.StudentSign;
 @MyBatisRepository("studentInfoRepository")
 public interface StudentInfoRepository {
 
-	public long addStudentInfo(StudentInfo studentInfo);
+	long addStudentInfo(StudentInfo studentInfo);
 	
-	public StudentInfo loadStudentInfo(long id);
+	StudentInfo loadStudentInfo(long id);
 	
-	public void updateStudentInfo(StudentInfo studentInfo);
+	void updateStudentInfo(StudentInfo studentInfo);
+
+	List<StudentInfo> listStudentInfos(Map<String, Object> param);
 }

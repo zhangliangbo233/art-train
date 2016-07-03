@@ -2,10 +2,9 @@ package com.suning.arttrain.service;
 
 import com.suning.arttrain.common.exception.ParamsValidatorException;
 import com.suning.arttrain.dto.StudentSignView;
+import com.suning.arttrain.exception.ParamValidateException;
 import com.suning.arttrain.param.StudentSignCreateParam;
 import com.suning.arttrain.persistent.StudentInfo;
-import com.suning.arttrain.service.BaseTest;
-import com.suning.arttrain.service.StudentMsgService;
 import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +17,7 @@ import java.util.List;
 public class StudentMsgTest extends BaseTest {
 
     @Autowired
-    private StudentMsgService studentMsgService;
+    private StudentMngService studentMngService;
 
 
     @Test
@@ -33,21 +32,21 @@ public class StudentMsgTest extends BaseTest {
         studentInfo.setGrade("二年级");
         studentInfo.setSchool("涟水中学");
 
-        Assert.assertEquals(studentMsgService.addStudentInfo(studentInfo),1);
+        Assert.assertEquals(studentMngService.addStudentInfo(studentInfo),1);
     }
 
     @Test
     public void deleteStudentSignTest(){
         long id =6;
-        studentMsgService.deleteStudentSign(id);
+        studentMngService.deleteStudentSign(id);
     }
 
-    @Test(expected = ParamsValidatorException.class)
+    @Test(expected = ParamValidateException.class)
     public void loadSignWithStuInfoByIdTest(){
         long id =6;
         try {
-            studentMsgService.loadSignWithStuInfoById(id);
-        } catch (ParamsValidatorException e) {
+            studentMngService.loadSignWithStuInfoById(id);
+        } catch (ParamValidateException e) {
             e.printStackTrace();
         }
     }
@@ -66,8 +65,8 @@ public class StudentMsgTest extends BaseTest {
         signCreateParam.setBirthday("10/7/1986");
 
         try {
-            studentMsgService.saveStudentSign(signCreateParam);
-        } catch (ParamsValidatorException e) {
+            studentMngService.saveStudentSign(signCreateParam);
+        } catch (ParamValidateException e) {
             e.printStackTrace();
         }
 
@@ -76,7 +75,7 @@ public class StudentMsgTest extends BaseTest {
     @Test
     public void listExpireStudentsInfosTest() throws Exception {
 
-        List<StudentSignView> expireStudentsInfo = studentMsgService.listExpireStudentsInfos();
+        List<StudentSignView> expireStudentsInfo = studentMngService.listExpireStudentsInfos();
 
         Assert.assertNotNull(expireStudentsInfo);
     }

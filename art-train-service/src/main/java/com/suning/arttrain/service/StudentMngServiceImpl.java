@@ -4,8 +4,8 @@ import com.suning.arttrain.common.util.DateUtil;
 import com.suning.arttrain.constant.StudentStatusEnum;
 import com.suning.arttrain.dto.StudentSignView;
 import com.suning.arttrain.exception.ParamValidateException;
+import com.suning.arttrain.param.StudentListParam;
 import com.suning.arttrain.param.StudentSignCreateParam;
-import com.suning.arttrain.param.StudentSignListParam;
 import com.suning.arttrain.persistent.StudentInfo;
 import com.suning.arttrain.persistent.StudentSign;
 import com.suning.arttrain.repository.StudentInfoRepository;
@@ -21,8 +21,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@Service("studentMsgService")
-public class StudentMsgServiceImpl implements StudentMsgService {
+@Service("studentMngService")
+public class StudentMngServiceImpl implements StudentMngService {
 
     @Resource(name="studentInfoRepository")
     private StudentInfoRepository studentInfoRepository;
@@ -54,11 +54,9 @@ public class StudentMsgServiceImpl implements StudentMsgService {
 	}
 	
 	@Override
-	public List<StudentSignView> listStudentSignInfos(StudentSignListParam listParam) {
+	public List<StudentInfo> listStudentInfos(StudentListParam listParam) {
 		Map<String,Object> param = new HashMap<String, Object>();
 		param.put("isDelete", StudentStatusEnum.NORMAL.getCode());
-		param.put("pageSize", listParam.getPageSize());
-		param.put("pageIndex", listParam.getPageIndex());
 		if(StringUtils.isNotBlank(listParam.getStartTime())){
 			param.put("startTime", listParam.getStartTime());
 		}
@@ -68,7 +66,7 @@ public class StudentMsgServiceImpl implements StudentMsgService {
 		if(StringUtils.isNotBlank(listParam.getStudentName())){
 			param.put("studentName", listParam.getStudentName());
 		}
-		return studentSignMsgRepository.listStudentSignInfos(param);
+		return studentInfoRepository.listStudentInfos(param);
 	}
 	
 	@Override
@@ -147,4 +145,5 @@ public class StudentMsgServiceImpl implements StudentMsgService {
 
         return expireStudentsInfos;
     }
+
 }

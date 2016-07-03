@@ -8,17 +8,17 @@ import java.util.Map;
 @MyBatisRepository("courseInfoRepository")
 public interface CourseInfoRepository {
 
-	public CourseInfo loadCourseInfo(Long id);
+	CourseInfo loadCourseInfo(Long id);
 	
-	public void addCourseInfo(CourseInfo courseInfo);
+	void addCourseInfo(CourseInfo courseInfo);
 	
-	public void updateCourseInfo(CourseInfo courseInfo);
+	void updateCourseInfo(CourseInfo courseInfo);
 
-	public List<CourseInfo> listCourseInfos(Map<String, Object> param);
+	List<CourseInfo> listCourseInfos(Map<String, Object> param);
 
-	public int countCourseInfos(Map<String, Object> param);
+	int countCourseInfos(Map<String, Object> param);
 
-	public void deleteCourseInfoById(long id);
+	void deleteCourseInfoById(long id);
 
     List<CourseInfo> queryCourseInfos();
 }

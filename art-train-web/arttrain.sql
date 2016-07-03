@@ -2,7 +2,8 @@
 SQLyog Ultimate v11.24 (32 bit)
 MySQL - 5.1.73 : Database - arttrain
 *********************************************************************
-*/
+*/
+
 
 /*!40101 SET NAMES utf8 */;
 
@@ -253,6 +254,7 @@ CREATE TABLE `arttrain_student_info` (
   `contact_mobile` varchar(11) DEFAULT NULL COMMENT '联系人电话',
   `school` varchar(50) DEFAULT NULL COMMENT '所在学校',
   `grade` varchar(10) DEFAULT NULL COMMENT '年级',
+  `create_time` TIMESTAMP DEFAULT NULL COMMENT '创建时间',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
 

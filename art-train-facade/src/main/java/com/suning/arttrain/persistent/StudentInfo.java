@@ -1,6 +1,8 @@
 package com.suning.arttrain.persistent;
 
 
+import java.util.Date;
+
 /**
  * 学员基本信息实体
  * @author zhanglb
@@ -37,6 +39,8 @@ public class StudentInfo {
 	 * 就读年级
 	 */
 	private String grade;
+
+	private Date createTime;
 
 	public long getId() {
 		return id;
@@ -109,4 +113,12 @@ public class StudentInfo {
     public void setGrade(String grade) {
         this.grade = grade;
     }
+
+	public Date getCreateTime() {
+		return createTime;
+	}
+
+	public void setCreateTime(Date createTime) {
+		this.createTime = createTime;
+	}
 }

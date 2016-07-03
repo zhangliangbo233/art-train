@@ -5,7 +5,7 @@ package com.suning.arttrain.param;
  * @author zhanglb
  *
  */
-public class StudentSignListParam extends AbstractParam{
+public class StudentListParam extends AbstractParam{
 
     /**
      * 查询开始时间

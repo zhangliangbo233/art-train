@@ -882,178 +882,6 @@
                 </ul>
 
             </li>
-            <li>
-
-                <a class="active" href="javascript:;">
-
-                    <i class="icon-sitemap"></i>
-
-                    <span class="title">3 Level Menu</span>
-
-                    <span class="arrow "></span>
-
-                </a>
-
-                <ul class="sub-menu">
-
-                    <li>
-
-                        <a href="javascript:;">
-
-                            Item 1
-
-                            <span class="arrow"></span>
-
-                        </a>
-
-                        <ul class="sub-menu">
-
-                            <li><a href="#">Sample Link 1</a></li>
-
-                            <li><a href="#">Sample Link 2</a></li>
-
-                            <li><a href="#">Sample Link 3</a></li>
-
-                        </ul>
-
-                    </li>
-
-                    <li>
-
-                        <a href="javascript:;">
-
-                            Item 1
-
-                            <span class="arrow"></span>
-
-                        </a>
-
-                        <ul class="sub-menu">
-
-                            <li><a href="#">Sample Link 1</a></li>
-
-                            <li><a href="#">Sample Link 1</a></li>
-
-                            <li><a href="#">Sample Link 1</a></li>
-
-                        </ul>
-
-                    </li>
-
-                    <li>
-
-                        <a href="#">
-
-                            Item 3
-
-                        </a>
-
-                    </li>
-
-                </ul>
-
-            </li>
-            <li>
-
-                <a href="javascript:;">
-
-                    <i class="icon-folder-open"></i>
-
-                    <span class="title">4 Level Menu</span>
-
-                    <span class="arrow "></span>
-
-                </a>
-
-                <ul class="sub-menu">
-
-                    <li>
-
-                        <a href="javascript:;">
-
-                            <i class="icon-cogs"></i>
-
-                            Item 1
-
-                            <span class="arrow"></span>
-
-                        </a>
-
-                        <ul class="sub-menu">
-
-                            <li>
-
-                                <a href="javascript:;">
-
-                                    <i class="icon-user"></i>
-
-                                    Sample Link 1
-
-                                    <span class="arrow"></span>
-
-                                </a>
-
-                                <ul class="sub-menu">
-
-                                    <li><a href="#"><i class="icon-remove"></i> Sample Link 1</a></li>
-
-                                    <li><a href="#"><i class="icon-pencil"></i> Sample Link 1</a></li>
-
-                                    <li><a href="#"><i class="icon-edit"></i> Sample Link 1</a></li>
-
-                                </ul>
-
-                            </li>
-
-                            <li><a href="#"><i class="icon-user"></i> Sample Link 1</a></li>
-
-                            <li><a href="#"><i class="icon-external-link"></i> Sample Link 2</a></li>
-
-                            <li><a href="#"><i class="icon-bell"></i> Sample Link 3</a></li>
-
-                        </ul>
-
-                    </li>
-
-                    <li>
-
-                        <a href="javascript:;">
-
-                            <i class="icon-globe"></i>
-
-                            Item 2
-
-                            <span class="arrow"></span>
-
-                        </a>
-
-                        <ul class="sub-menu">
-
-                            <li><a href="#"><i class="icon-user"></i> Sample Link 1</a></li>
-
-                            <li><a href="#"><i class="icon-external-link"></i> Sample Link 1</a></li>
-
-                            <li><a href="#"><i class="icon-bell"></i> Sample Link 1</a></li>
-
-                        </ul>
-
-                    </li>
-
-                    <li>
-
-                        <a href="#">
-
-                            <i class="icon-folder-open"></i>
-
-                            Item 3
-
-                        </a>
-
-                    </li>
-
-                </ul>
-
-            </li>
             <li class="">
 
                 <a href="javascript:;">
@@ -1067,26 +895,34 @@
                 </a>
 
                 <ul class="sub-menu">
-
                     <li>
-
                         <a href="login.html">
-
                             Login Form 1</a>
-
                     </li>
-
                     <li>
-
                         <a href="login_soft.html">
-
                             Login Form 2</a>
-
                     </li>
-
                 </ul>
 
             </li>
+            <li class="start active">
+                <a href="javascript:;">
+                    <i class="icon-th"></i>
+                    <span class="title">学生管理</span>
+                    <span class="arrow "></span>
+                </a>
+                <ul class="sub-menu">
+                    <li>
+                        <a href="studentsInfos.htm">学生信息</a>
+                    </li>
+                    <li>
+                        <a href="table_advanced.html">学生报名信息</a>
+                    </li>
+                </ul>
+
+            </li>
+
             <li class="start active">
                 <a href="javascript:;">
                     <i class="icon-th"></i>
@@ -1131,29 +967,6 @@
                             Draggable Portlets</a>
                     </li>
                 </ul>
-            </li>
-            <li class="">
-                <a href="javascript:;">
-                    <i class="icon-map-marker"></i>
-                    <span class="title">Maps</span>
-                    <span class="arrow "></span>
-                </a>
-                <ul class="sub-menu">
-                    <li>
-                        <a href="maps_google.html">
-                            Google Maps</a>
-                    </li>
-                    <li>
-                        <a href="maps_vector.html">
-                            Vector Maps</a>
-                    </li>
-                </ul>
-            </li>
-            <li class="last ">
-                <a href="charts.html">
-                    <i class="icon-bar-chart"></i>
-                    <span class="title">Visual Charts</span>
-                </a>
             </li>
         </ul>
     </div>
